@@ -23,7 +23,7 @@ int somme(int n) {
 // fonction prenant en paramètre un entier (int n) et renvoyant le produit des n premiers entiers positifs et pairs
 int prodp(int n) {
     int produitp = 1;// initialisation d'une variable produitp
-    for (int i=1; i<=n; i++) { // parcours des nombres de 1 à n
+    for (int i=2; i<=n; i+=2) { // parcours des nombres de 1 à n
         if ((i>0) && (i%2==0)) { // on ne calcule que pour les entiers positifs et pairs
             produitp *= i; // calcul du produit *
         }
@@ -34,7 +34,7 @@ int prodp(int n) {
 // fonction prenant en paramètre un entier (int n) et renvoyant la somme des n premiers entiers positifs et pairs
 int sommep(int n) {
     int sommep = 0; // initialisation d'une variable sommep
-    for (int i=1; i<=n; i++) { // parcours des nombres de 1 à n
+    for (int i=2; i<=n; i+=2) { // parcours des nombres de 1 à n
         if ((i>0) && (i%2 == 0)) { // on ne calcule que pour les entiers positifs et pairs
             sommep += i;// calcul de la somme +
         }
@@ -73,13 +73,27 @@ int puissance(int x, int n) {
     return produit; // retour de la fonction --> l'entier x puissance n
 }
 
+// fonction prenant en paramètre un entier et renvoyant son carré
+// cette fonction n'utilise aucune multiplication, mais seulement des additions
+int carre(int n) {
+    int ecart = 3; // initialisation d'ue variable représentant la valeur entre deux carres d'entiers
+    int tmp = 1; // initialisation d'une variable temporaire dans laquelle on stocke notre résultat
+    for (int i = 1; i < n; i++) { // parcours des nombres dans l'intervalle [1,n[ (donc si n=1 on ne rentre pas dans la boucle)
+        tmp += ecart; // incrémentation du résultat à chaque itération
+        ecart += 2; // incrémentation de l'écart entre deux carrés d'entiers successifs
+    }
+    return tmp; // retour de la fonction --> l'entier n au carre
+}
+
 // affichage des solutions
 int main() {
-    cout << "Mon produit est : " << prod(5) << endl;
-    cout << "Ma somme est : " << somme(5) << endl;
-    cout << "Mon produit de nombres pairs positifs est : " << prodp(5) << endl;
-    cout << "Ma somme de nombres pairs positifs est : " << sommep(5) << endl;
-    cout << "Mon produit de nombres impairs est : " << prodi(5) << endl;
-    cout << "Ma somme de nombres impairs est : " << sommei(5) << endl;
+    cout << "Le produit pour n=5 est : " << prod(5) << endl;
+    cout << "La somme pour n=5 est : " << somme(5) << endl;
+    cout << "Le produit de nombres pairs positifs pour n=5 est : " << prodp(5) << endl;
+    cout << "La somme de nombres pairs positifs pour n=5 est : " << sommep(5) << endl;
+    cout << "Le produit de nombres impairs pour n=5 est : " << prodi(5) << endl;
+    cout << "La somme de nombres impairs pour n=5 est : " << sommei(5) << endl;
     cout << "5 puissance 3 : " << puissance(5,3) << endl;
+    cout << "15 au carre : " << carre(15) << endl;
+    return 0;
 }
